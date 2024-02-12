@@ -1,0 +1,83 @@
+{
+    "ennemies" : {
+        "Goblin Guerrier" : {
+            "Heal Points" : 15, 
+            "Attacks": {
+                "Coup de Dague" : {
+                    "Coup En Elexir" : 3, 
+                    "Uses" : 5, 
+                    "Damage" : "4 x Un chiffre random entre 1 et 3",
+                    "Description" : "Le Goblin Guerrier vous attaque avec sa dague en pierre.",
+                    "Give An Effect ?" : false
+                }, 
+                "Sort de Soin" : {
+                    "Coup En Elexir" : 8, 
+                    "Uses" : 1, 
+                    "Damage" : false, 
+                    "Description" : "Le goblin se soigne.",
+                    "Give An Effect" : "Redonne un nombre de HP entre 1 et 10"
+                }
+            }
+        },
+
+        "Goblin endormi" : {
+            "Heal Points" : 10, 
+            "Attacks" : {
+                "Ronflement" : {
+                    "Coup En Elexir" : 5, 
+                    "Uses" : 3, 
+                    "Damage" : false, 
+                    "Description" : "Le goblin ronfle fort.",
+                    "Give An Effect" : "Empêche le joueur de pouvoir utiliser son coup spécial pendant la manche."
+                },
+                "Coup de pied" : {
+                    "Coup En Elexir" : 5, 
+                    "Uses" : 4, 
+                    "Damage" : "1 x Un chiffre random entre 1 et 5", 
+                    "Description" : "Le goblin vous donne un coup de pied",
+                    "Give An Effect" : false
+                }
+            }
+        }    
+    }, 
+    "allies" : {
+        "Chevalier Perdu" : {
+            "Heal Points" : 15, 
+            "Attacks" : {
+                "Coup d'épée" : {
+                    "Coup en Elexir" : 5, 
+                    "Uses" : 4, 
+                    "Damage" : "3 x Niveau de joueur", 
+                    "Description" : "Le chevalier attaque avec son épée.", 
+                    "Give An Effect" : false
+                }, 
+                "Potion de force" : {
+                    "Coup en Elexir" : 3,
+                    "Uses" : 1, 
+                    "Damage" : false, 
+                    "Description" : "Le chevalier donne un boost de force de x1.25 -- (Durée : 5 Tours)", 
+                    "Give An Effect" : true
+                }
+            }
+        }, 
+        "Loup Guerrier" : {
+            "Heal Points" : 15, 
+            "Attacks" : {
+                "Morsure" : {
+                    "Coup En Elexir" : 4, 
+                    "Uses" : 2, 
+                    "Damage" : "2 x Niveau de joueur", 
+                    "Description" : "Le loup saute sur l'adversaire, afin de le tuer", 
+                    "Give An Effect" : true
+                }, 
+                "Rassemblement de la Meute" : {
+                    "Coup En Elexir" : 5,
+                    "Uses" : 1, 
+                    "Damage" : false, 
+                    "Description" : "Le loup appelle sa meute. Il donne un boost de reflexe de x1.50 -- (Durée : 5 Tours", 
+                    "Give An Effect" : true 
+                }
+            }
+        }
+    }
+}
