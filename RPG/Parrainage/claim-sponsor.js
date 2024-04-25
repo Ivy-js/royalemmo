@@ -18,7 +18,7 @@ module.exports = new Command({
           `SELECT * FROM eco WHERE userID = ${message.user.id}`,
           async (err, eco) => {
             const sponsorUser = bot.users.cache.get(req[0].userID);
-            const sponsorUserFind = bot.users.cache.find(u => u.username === req[0].username)
+            const sponsorUserFind = bot.users.cache.find(u => u.id === req[0].username)
             if (eco.length < 1) {
               return message.reply({
                 content: `> Vous n'avez pas encore créer votre compte. faites la commande \`/start\` pour commencer l'aventure.`,
@@ -39,8 +39,9 @@ module.exports = new Command({
               });
             } else {
               db.query(
-                `UPDATE eco SET elexir=elexir+30, ticket=ticket+5, gems=gems+1, sponsor_code='${sponsorCode}' WHERE userID=${message.user.id}`
+                `UPDATE eco SET elexir=elexir+30, ticket=ticket+5, gems=gems+1, count=count+1 sponsor_code='${sponsorCode}' WHERE userID=${message.user.id}`
               );
+              
               db.query(
                 `UPDATE sponsor SET sponsorElexir=sponsorElexir+10, sponsorTicket=sponsorTicket+2, sponsorGems=sponsorGems+1 WHERE sponsor_code='${sponsorCode}'`
               );

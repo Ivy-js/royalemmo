@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const Command = require("./Command")
 const Database = require("./Database")
+const config = require("../Config/bot")
 const intents = new Discord.Intents(3276799)
 const fs = require("fs")
 require("colors")
@@ -16,6 +17,7 @@ class Client extends Discord.Client {
             cacaid : require("../Functions/createID"),
 
         }
+        this.config = config
     }
 
     

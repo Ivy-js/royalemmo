@@ -37,12 +37,14 @@ Votre code de parrainage \`${oldCode}\` a été changé en \`${newCode}\` avec s
 
             .setColor(bot.color)
 
-            message.reply({embeds : [embed], ephemeral: true})
+            
 
             try {
                 bot.users.cache.get(userID).send({embeds: [embedToUser]})
+                message.reply({embeds : [embed], ephemeral: true})
             } catch (err) {
                 console.log(`[ERR] `.red + ` - L'utilisateur ${bot.users.cache.get(userID).username.yellow} n'accepte pas les messages privés`)
+                message.reply({content : `*L'utilisateur n'accepte pas les messages privés, le changement à quand même été effectué.*`, embeds : [embed], ephemeral: true})
             }
 
 

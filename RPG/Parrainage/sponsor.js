@@ -41,19 +41,20 @@ Vos revenus estimées :
                 .setCustomId("gems")
                 .setStyle("SUCCESS")
                 .setLabel("Récuperer les Gemmes")
-                .setEmoji("1199407074812113137") 
+                .setDisabled(gemsToClaim === 0 ? true : false)
                 , 
                 new Discord.MessageButton()
                 .setCustomId("ticket")
                 .setStyle("PRIMARY")
                 .setLabel("Récuperer Vos Tickets")
                 .setEmoji("🎫")
+                .setDisabled(ticketToClaim === 0 ? true : false)
                 , 
                 new Discord.MessageButton()
                 .setCustomId("elexir")
                 .setStyle("PRIMARY")
                 .setLabel("Récuperer L'Elexir")
-                .setEmoji("1199124230407737535")
+                .setDisabled(elexirToClaim === 0 ? true:false)
                 , 
                 new Discord.MessageButton()
                 .setCustomId("help")
@@ -91,6 +92,60 @@ Le parrainage est une excellente façon d'accélérer ta progression dans Royale
 
                     
                     `, ephemeral : true})
+                }
+
+                if(button.customId === "ticket"){
+
+                    if(ticketToClaim === 0){
+                        return message.reply({content : `Vous ne pouvez pas retirer 0 tickets.`, ephemeral : true})
+                    }
+
+                    button.reply({
+                        content : `
+> Vous avez retiré \`${ticketToClaim} 🎫\`, ils ont été ajouté à votre inventaire. 
+                        `, 
+                        ephemeral : true, 
+                    })
+
+                    db.query(`UPDATE sponsor SET sponsorTicket=? WHERE userID =? `, [0, button.user.id])
+                    db.query(`UPDATE eco SET ticket=ticket+? WHERE userID =? `, [ticketToClaim, button.user.id])
+                    return button.editReply({components : [row]})
+                }
+                if(button.customId === "elexir"){
+
+                    if(elexirToClaim === 0){
+                        return message.reply({content : `Vous ne pouvez pas retirer 0 d'élexir.`, ephemeral : true})
+                    }
+
+                    button.reply({
+                        content : `
+> Vous avez retiré \`${elexirToClaim} 🟣\`, ils ont été ajouté à votre inventaire. 
+                        `, 
+                        ephemeral : true, 
+                    })
+
+                    db.query(`UPDATE sponsor SET sponsorElexir=? WHERE userID =? `, [0, button.user.id])
+                    db.query(`UPDATE eco SET elexir=elexir+? WHERE userID =? `, [elexirToClaim, button.user.id])
+                    return button.message.edit({components : [row]})
+
+                }
+                if(button.customId === "gems"){
+
+                    if(gemsToClaim === 0){
+                        return message.reply({content : `Vous ne pouvez pas retirer 0 gemmes.`, ephemeral : true})
+                    }
+
+                    button.reply({
+                        content : `
+> Vous avez retiré \`${gemsToClaim} 🟢\`, ils ont été ajouté à votre inventaire. 
+                        `, 
+                        ephemeral : true, 
+                    })
+
+                    db.query(`UPDATE sponsor SET sponsorGems=? WHERE userID =? `, [0, button.user.id])
+                    db.query(`UPDATE eco SET gems=gems+? WHERE userID =? `, [gemsToClaim, button.user.id])
+                    return button.editReply({components : [row]})
+
                 }
            })
             message.reply({embeds : [embed], components : [row]})
