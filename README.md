@@ -1,4 +1,4 @@
-![](https://cdn.discordapp.com/attachments/1233148640139411560/1233148661983084574/clash_royal_Banniere.png?ex=662c0aaf&is=662ab92f&hm=af41b6b97e45158b26121dccf4f2f842c82d09c1c92427e571c4df6707ad15df&)
+![Bannière réalisée par lastsantamonica](https://cdn.discordapp.com/attachments/1233148640139411560/1233148661983084574/clash_royal_Banniere.png?ex=662c0aaf&is=662ab92f&hm=af41b6b97e45158b26121dccf4f2f842c82d09c1c92427e571c4df6707ad15df&)
 
 ﻿# RoyaleMMO Bot
 
