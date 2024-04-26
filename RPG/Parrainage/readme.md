@@ -1,3 +1,5 @@
+![](https://media.discordapp.net/attachments/1200898369502068807/1233502529426555001/parainage_banner.png?ex=662d5440&is=662c02c0&hm=ab22d65362a7588e041b5aff4bfc366324012c75f5e69313bd585a1b73822404&=&format=webp&quality=lossless&width=720&height=405)
+
 ### Commande `/claim-sponsor`
 
 Permet d'appliquer un code de parrainage à votre compte.
@@ -29,7 +31,7 @@ Permet de créer un code de parrainage que vous pouvez partager à vos amis.
 
 ---
 
-### Commande `/sponsor`
+### Commande `/sponsor` 
 
 Permet de consulter vos revenus sur le code de parrainage.
 

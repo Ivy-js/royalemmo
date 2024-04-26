@@ -45,9 +45,9 @@ Arène ${adventure[0].arene}
 
 __**Badges :**__
 
-OG Player ? : ${eco[0].isOG === 1 ? emojis.early : "Non"}
-Owner ? : ${eco[0].isOwner === 1 ? emojis.red_crown : "Non"}
-Premium ? : ${eco[0].premium === 2 ? "`🌟 Vous êtes premium !`" : "`❌ Vous n'êtes pas premium !`" }
+OG Player : ${eco[0].isOG === 1 ? emojis.early : "Non"}
+Owner : ${eco[0].isOwner === 1 ? emojis.red_crown : "Non"}
+Premium : ${eco[0].premium === 2 ? "`🌟 Vous êtes premium !`" : "`❌ Vous n'êtes pas premium !`" }
 `)
             .setColor(bot.color)
             message.reply({embeds: [Inventory]})

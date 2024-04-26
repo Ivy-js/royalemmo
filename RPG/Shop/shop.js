@@ -37,6 +37,39 @@ module.exports = new Command({
                          
                          
                )
+
+               const PotionRow = new Discord.MessageActionRow().addComponents(
+                    new Discord.MessageSelectMenu()
+                    .setCustomId(`potion_${message.user.id}`)
+                    .setMaxValues(1)
+                    .setPlaceholder(`Sélectionnez votre choix...`)
+                    .setOptions(
+                         [
+                              {
+                                   label : "Potion Commune", value : "1", 
+                              }
+                              , 
+                              {
+                                   label : "Potion Rare", value : "2", 
+                              }
+                              , 
+                              {
+                                   label : "Potion Epique", value : "3", 
+                              }
+                              , 
+                              {
+                                   label : "Potion Légendaire", value : "4", 
+                              }
+                              , 
+                              {
+                                   label : "Potion de Champion", value : "5", 
+                              }
+                              , 
+
+                         ]
+                         
+                    )
+               )
                
                let id = new Discord.MessageActionRow().addComponents(
                new Discord.TextInputComponent()
@@ -56,10 +89,9 @@ module.exports = new Command({
 
            let btn = new Discord.MessageActionRow().addComponents(
                new Discord.MessageButton()
-               .setLabel("Acheter un article")
+               .setLabel("🏠")
                .setStyle("SECONDARY")
-               .setEmoji("1199124230407737535")
-               .setCustomId(`buyer_${message.user.id}`)
+               .setCustomId(`home`)
            )
 
            let modal = new Discord.Modal()
@@ -98,11 +130,23 @@ module.exports = new Command({
                     idle : 30000
                })
 
-               collector.on("collect", async (button) =>  {
-                    if(button.isSelectMenu()){
-                         if(button.customId === `shop_${button.user.id}`){
-                              if(button.values[0] === "Potions"){
-                                   console.log("[SHOP] ".green.bold + button.user.username.yellow + " a ouvert le shop " + "Potions".magenta)
+
+
+
+               collector.on("collect", async (interaction) =>  {
+
+                    if(interaction.isButton()){
+
+                         if(interaction.customId === "home"){
+                              interaction.message.edit({embeds : [Embed_Main], components : [row]})
+                         }
+                    }
+
+
+                    if(interaction.isSelectMenu()){
+                         if(interaction.customId === `shop_${interaction.user.id}`){
+                              if(interaction.values[0] === "Potions"){
+                                   console.log("[SHOP] ".green.bold + interaction.user.username.yellow + " a ouvert le shop " + "Potions".magenta)
                                    const Embed_Potions = new Discord.MessageEmbed()
                                        .setTitle("🍹 ・ Catégorie des potions ")
                                        .setDescription(`
@@ -129,52 +173,48 @@ ${emoji.champion_potion} - Une Potion de Champion (ID : 5)
 Prix : 2 700 ${emoji.elexir}
                    `)
                                        .setColor(bot.color)
-                                       .setFooter({ text: "Pour effectuer des achats, faites /buy", iconURL: button.user.avatarURL({ dynamic: true }) })
+                                       .setFooter({ text: "Pour effectuer des achats, faites /buy", iconURL: interaction.user.avatarURL({ dynamic: true }) })
                    
-                                   button.deferUpdate()
-                                   button.message.edit({ embeds: [Embed_Potions] , components : [row, btn] })
+                                   interaction.deferUpdate()
+                                   interaction.message.edit({ embeds: [Embed_Potions] , components : [row, PotionRow, btn] })
                               }
-                              if (button.values[0] === "Plantes") {
-                                   button.reply({ content: "> En Développement...", ephemeral: true })
+                              if (interaction.values[0] === "Plantes") {
+                                   interaction.reply({ content: "> En Développement...", ephemeral: true })
                                }
-                               if (button.values[0] === "Reliques") {
-                                   button.reply({ content: "> En Développement...", ephemeral: true })
+                               if (interaction.values[0] === "Reliques") {
+                                   interaction.reply({ content: "> En Développement...", ephemeral: true })
                                }
                          }
                     }
-                    if(button.isButton()){
-                         if(button.customId === `buyer_${button.user.id}`){
-                              button.deferUpdate()
-                              button.showModal(modal)
-                         }
-                    }
-                    if(button.isModalSubmit()){
-                         if(button.customId === `achats_${message.user.id}`){
-                              db.query(`SELECT * FROM eco WHERE userID = ${button.user.id}`, async (err, eco) => {
-                                   let article = button.fields.getTextInputValue("id")
-                                   let nbr = button.fields.getTextInputValue("nombre_d'article")
+                    
+                    if(interaction.isSelectMenu()){
+                         if(interaction.customId === `potion_${message.user.id}`){
+                              db.query(`SELECT * FROM eco WHERE userID = ${interaction.user.id}`, async (err, eco) => {
+                                   let article = interaction.values[0]
                                    let elexir = eco[0].elexir
                    
                                    if (article < 1 || article > 5) {
-                                       return button.reply({ content: `> Votre article n'existe pas.`, ephemeral: true })
+                                       return interaction.reply({ content: `> Votre article n'existe pas.`, ephemeral: true })
                                    }
-                                   let price = [10*nbr, 60*nbr, 300*nbr, 900*nbr, 2700*nbr]
-                                   if (elexir < price[article - 1]) return button.reply({ content: `> Vous n'avez pas assez d'élexir.`, ephemeral: true })
+                                   let price = [10, 60, 300, 900, 2700]
+                                   if (elexir < price[article - 1]) return interaction.reply({ content: `> Vous n'avez pas assez d'élexir.`, ephemeral: true })
                    
                                    let colonnes = ["common_potion", "rare_potion", "epic_potion", "legendary_potion", "champion_potion"]
                                    let response = [`**Une Potion Commune** pour ${price[0]} `, `**Une Potion Rare** pour ${price[1]}`, `**Une Potion Epique** pour ${price[2]}`, `**Une Potion légendaire** pour ${price[3]}`, `**Une Potion De Champion** pour ${price[4]}`]
                                    let emojis = [emoji.common_potion, emoji.rare_potion, emoji.epic_potion, emoji.legendary_potion, emoji.champion_potion]
                    
-                                   db.query(`UPDATE eco SET ${colonnes[article - 1]} = ${colonnes[article - 1]} + ${nbr} , elexir = elexir - ${price[article - 1]}   WHERE userID = ${button.user.id}`)
-                                   button.reply({ content: `> ${emojis[article - 1]} Vous avez acheté ${response[article - 1]}  ${emoji.elexir}`, ephemeral: true })
-                                   console.log("[ACHAT] ".magenta + button.user.username.yellow + ` a acheté ${response[article - 1]} elexirs !`)
-                   
+                                   db.query(`UPDATE eco SET ${colonnes[article - 1]} = ${colonnes[article - 1]}+1 , elexir = elexir - ${price[article - 1]}   WHERE userID = ${interaction.user.id}`)
+                                   interaction.reply({ content: `> ${emojis[article - 1]} Vous avez acheté ${response[article - 1]}  ${emoji.elexir}`, ephemeral: true })
+                                   console.log("[ACHAT] ".magenta + interaction.user.username.yellow + ` a acheté ${response[article - 1]} elexirs !`)
+                                   console.log(`[INVENTORY]`.bgYellow + ` | ${interaction.user.username} à eu un changement d'inventaire. `)
                    
                    
                                    console.log(article)
                                })
                          }
                     }
+
+                    
                })
 
                console.log(`User : ${message.user.username} / Gems: ${gems} / Elexir: ${elexir} / ticket: ${ticket}`.red)
