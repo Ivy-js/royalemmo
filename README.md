@@ -1,4 +1,4 @@
-![](https://cdn.discordapp.com/attachments/1233148640139411560/1233148661983084574/clash_royal_Banniere.png?ex=662c0aaf&is=662ab92f&hm=af41b6b97e45158b26121dccf4f2f842c82d09c1c92427e571c4df6707ad15df&)
+![Bannière réalisée par lastsantamonica](https://cdn.discordapp.com/attachments/1233148640139411560/1233148661983084574/clash_royal_Banniere.png?ex=662c0aaf&is=662ab92f&hm=af41b6b97e45158b26121dccf4f2f842c82d09c1c92427e571c4df6707ad15df&)
 
 ﻿# RoyaleMMO Bot
 
@@ -35,3 +35,8 @@ RoyaleMMO Bot est un bot Discord développé pour offrir une expérience de jeu 
 Si vous avez des questions, des problèmes ou simplement besoin d'aide, n'hésitez pas à créer une issue sur GitHub.
 
 Amusez-vous bien dans l'univers passionnant de RoyaleMMO Bot ! 🌟
+
+--- 
+
+## Documentations 
+[`➕ Parrainage`](https://github.com/Ivy-js/royalemmo/blob/main/RPG/Parrainage/readme.md)
