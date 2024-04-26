@@ -35,3 +35,8 @@ RoyaleMMO Bot est un bot Discord développé pour offrir une expérience de jeu 
 Si vous avez des questions, des problèmes ou simplement besoin d'aide, n'hésitez pas à créer une issue sur GitHub.
 
 Amusez-vous bien dans l'univers passionnant de RoyaleMMO Bot ! 🌟
+
+--- 
+
+## Documentations 
+[`➕ Parrainage`](https://github.com/Ivy-js/royalemmo/blob/main/RPG/Parrainage/readme.md)
