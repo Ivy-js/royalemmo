@@ -90,6 +90,8 @@ Le système de parrainage de RoyaleMMO te permet de bénéficier d'avantages exc
 
 Le parrainage est une excellente façon d'accélérer ta progression dans RoyaleMMO et de tisser des liens avec la communauté. Profite des avantages du parrainage et plonge dans l'aventure ! 🚀✨
 
+
+Documentation : \`[🦇 GitHub](https://github.com/Ivy-js/royalemmo/blob/main/RPG/Parrainage/readme.md)\`
                     
                     `, ephemeral : true})
                 }

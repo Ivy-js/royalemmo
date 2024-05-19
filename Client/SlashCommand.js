@@ -103,6 +103,8 @@ module.exports = async bot => {
         .addStringOption(options => options.setName("ownerid").setDescription("Id de l'owner").setRequired(true))
         .addStringOption(options => options.setName("token").setDescription("Le token du bot").setRequired(true))
         .addStringOption(options => options.setName("temps").setDescription("Le temps").setRequired(true)),
+
+
         
     ];
     commands.push.toString(commands)

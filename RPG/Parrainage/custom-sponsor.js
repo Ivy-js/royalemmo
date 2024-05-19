@@ -37,6 +37,10 @@ Votre code de parrainage \`${oldCode}\` a été changé en \`${newCode}\` avec s
 
             .setColor(bot.color)
 
+
+
+            console.log(`[SPONSOR]`.rainbow + ` - Le code de ${bot.users.cache.get(userID).username} a été modifié en ` + `${newCode}`.yellow + ` avec succès !`)
+
             
 
             try {

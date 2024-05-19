@@ -2,8 +2,6 @@ const Event = require("../../Client/Event")
 const Discord = require("discord.js")
 const allowedUserIDs = {
     ivy: "1114616280138395738",
-    "2ms" : "1195910081565442089",
-    dodoquidors: "833769403882405948"
 };
 module.exports = new Event("interactionCreate", async (bot, interaction) => {
     const db = bot.db

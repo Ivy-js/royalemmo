@@ -191,7 +191,7 @@ module.exports = new Command({
                             message.reply({ embeds: [StartEmbed], })
                             setTimeout(() => {
                                 message.editReply({ embeds : [SuiteEmbed], components: [] })
-                            }, 15*1000);
+                            }, 5*1000);
                     
                         } else {
                             message.reply("Vous avez déjà commencé l'aventure !")
